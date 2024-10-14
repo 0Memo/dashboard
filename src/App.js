@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider} from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
@@ -17,15 +18,20 @@ import Geography from "./scenes/geography";
 
 function App() {
   const [theme, colorMode] = useMode();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
   
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          <Sidebar />
+          <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
           <main className="content">
-            <Topbar />
+            <Topbar toggleDrawer={toggleDrawer} />
             <Routes>
               <Route path='/' element={<Dashboard />}></Route>
               <Route path='/team' element={<Team />}></Route>
