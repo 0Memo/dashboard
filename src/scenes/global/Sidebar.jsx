@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Drawer, Box, IconButton, Typography, useTheme } from '@mui/material';
+import { Drawer, Box, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { tokens } from '../../theme';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
