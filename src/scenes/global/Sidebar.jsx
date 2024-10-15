@@ -31,7 +31,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
         textDecoration: "none",
         color: colors.grey[100],
         cursor: "pointer",
-        "&:hover": { backgroundColor: colors.primary[500] },
+        "&:hover": { backgroundColor: colors.blueAccent[500] },
       }}
     >
       {icon}
