@@ -13,7 +13,7 @@ import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 
-const Dashboard = () => {
+const Dashboard = ({ isDashboard = true }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -36,7 +36,9 @@ const Dashboard = () => {
                             color: colors.grey[100],
                             fontSize: '14px',
                             fontWeight: 'bold',
-                            padding: { xs: '5px 15px', md: '10px 20px'}
+                            padding: { xs: '2px 10px', md: '10px 20px'},
+                            display: { xs: 'block', md: 'flex' },
+                            marginTop: { xs: '8px', md: '0' }
                         }}
                     >
                         <DownloadOutlinedIcon
@@ -358,7 +360,6 @@ const Dashboard = () => {
                         p= '8px'
                     >
                         <GeographyChart
-                            isDashboard={ false }
                         />
                     </Box>
                 </Box>
