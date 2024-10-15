@@ -36,12 +36,12 @@ const Dashboard = () => {
                             color: colors.grey[100],
                             fontSize: '14px',
                             fontWeight: 'bold',
-                            padding: '10px 20px'
+                            padding: { xs: '5px 15px', md: '10px 20px'}
                         }}
                     >
                         <DownloadOutlinedIcon
                             sx={{
-                                mr: '10px'
+                                mr: '8px'
                             }}
                         />
                         Télécharger rapports
@@ -57,7 +57,9 @@ const Dashboard = () => {
             >
                     {/* ROW 1 */}
                 <Box
-                    gridColumn='span 3'
+                    sx={{
+                        gridColumn: { xs: 'span 12', md: 'span 3'}
+                    }}
                     backgroundColor={ colors.primary[400] }
                     display='flex'
                     alignItems='center'
@@ -79,7 +81,9 @@ const Dashboard = () => {
                     ></StatBox>
                 </Box>
                 <Box
-                    gridColumn='span 3'
+                    sx={{
+                        gridColumn: { xs: 'span 12', md: 'span 3'}
+                    }}
                     backgroundColor={ colors.primary[400] }
                     display='flex'
                     alignItems='center'
@@ -101,7 +105,9 @@ const Dashboard = () => {
                     ></StatBox>
                 </Box>
                 <Box
-                    gridColumn='span 3'
+                    sx={{
+                        gridColumn: { xs: 'span 12', md: 'span 3'}
+                    }}
                     backgroundColor={ colors.primary[400] }
                     display='flex'
                     alignItems='center'
@@ -123,7 +129,9 @@ const Dashboard = () => {
                     ></StatBox>
                 </Box>
                 <Box
-                    gridColumn='span 3'
+                    sx={{
+                        gridColumn: { xs: 'span 12', md: 'span 3'}
+                    }}
                     backgroundColor={ colors.primary[400] }
                     display='flex'
                     alignItems='center'
@@ -147,7 +155,9 @@ const Dashboard = () => {
 
                     {/* ROW 2 */}
                 <Box
-                    gridColumn='span 8'
+                    sx={{
+                        gridColumn: { xs: 'span 12', md: 'span 8'}
+                    }}
                     gridRow='span 2'
                     backgroundColor={ colors.primary[400]}
                 >
@@ -200,7 +210,9 @@ const Dashboard = () => {
                 </Box>
                     {/* Transactions */}
                 <Box
-                    gridColumn='span 4'
+                    sx={{
+                        gridColumn: { xs: 'span 12', md: 'span 4'}
+                    }}
                     gridRow='span 2'
                     backgroundColor={ colors.primary[400]}
                     overflow='auto'
@@ -261,17 +273,17 @@ const Dashboard = () => {
 
                     {/* Row 3 */}
                 <Box
-                    gridColumn='span 4'
                     gridRow='span 2'
                     backgroundColor={ colors.primary[400] }
                     sx={{
                         height: '270px',
-                        p: '30px'
+                        gridColumn: { xs: 'span 12', md: 'span 4'}
                     }}
                 >
                     <Typography
                         variant='h5'
                         fontWeight='600'
+                        p= '20px'
                     >
                         Campagne
                     </Typography>
@@ -279,7 +291,7 @@ const Dashboard = () => {
                         display='flex'
                         flexDirection='column'
                         alignItems='center'
-                        mt='25px'
+                        mt='15px'
                     >
                         <ProgressCircle
                             size='125'
@@ -300,17 +312,17 @@ const Dashboard = () => {
                     </Box>
                 </Box>
                 <Box
-                    gridColumn='span 4'
                     gridRow='span 2'
                     backgroundColor={ colors.primary[400] }
                     sx={{
                         height: '270px',
-                        p: '30px'
+                        gridColumn: { xs: 'span 12', md: 'span 4'}
                     }}
                 >
                     <Typography
                         variant='h5'
                         fontWeight='600'
+                        p= '20px'
                     >
                         Ventes - quantités
                     </Typography>
@@ -324,17 +336,17 @@ const Dashboard = () => {
                     </Box>
                 </Box>
                 <Box
-                    gridColumn='span 4'
                     gridRow='span 2'
                     backgroundColor={ colors.primary[400] }
                     sx={{
                         height: '270px',
-                        p: '30px'
+                        gridColumn: { xs: 'span 12', md: 'span 4'}
                     }}
                 >
                     <Typography
                         variant='h5'
                         fontWeight='600'
+                        p= '20px'
                         sx={{
                             mb: '15px'
                         }}
@@ -343,9 +355,10 @@ const Dashboard = () => {
                     </Typography>
                     <Box
                         height='200px'
+                        p= '8px'
                     >
                         <GeographyChart
-                            isDashboard={ true }
+                            isDashboard={ false }
                         />
                     </Box>
                 </Box>

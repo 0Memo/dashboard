@@ -12,7 +12,11 @@ const Line = () => {
                 subtitle='Simple Graphique Ligne'
             />
             <Box
-                height='75vh'
+                sx={{
+                    height: { xs: '60vh', md: '75vh' },
+                    width: { xs: '116%', md: 'auto' },
+                    margin: { xs: '-30px', md: '0px'}
+                }}
             >
                 <LineChart />
             </Box>

@@ -12,7 +12,10 @@ const Pie = () => {
                 subtitle='Simple Graphique Camembert'
             />
             <Box
-                height='75vh'
+                sx={{
+                    height: { xs: '60vh', md: '75vh' },
+                    width: { xs: '100%', md: 'auto' }
+                }}
             >
                 <PieChart />
             </Box>

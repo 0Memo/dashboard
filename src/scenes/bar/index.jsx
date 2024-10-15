@@ -12,7 +12,10 @@ const Bar = () => {
                 subtitle='Simple Graphique Barre'
             />
                 <Box
-                    height='75vh'
+                    sx={{
+                        height: { xs: '60vh', md: '75vh' },
+                        width: { xs: '110%', md: 'auto' }
+                    }}
                 >
                     <BarChart />
                 </Box>

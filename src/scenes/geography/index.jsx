@@ -16,8 +16,11 @@ const Geography = () => {
                 subtitle='Simple Graphique Géo'
             />
             <Box
-                height='75vh'
-                border={ `1px solid ${colors.grey[100]}` }
+                sx={{
+                    height: { xs: '60vh', md: '75vh' },
+                    width: { xs: '100%', md: 'auto' },
+                    border: { xs:`2px solid ${colors.grey[100]}`, md: `1px solid ${colors.grey[100]}` }
+                }}
                 borderRadius='4px'
             >
                 <GeographyChart />
