@@ -1,5 +1,3 @@
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -7,13 +5,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { Box, IconButton, useTheme } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import { useContext } from "react";
-import { ColorModeContext, tokens } from "../../theme";
+import ThemeSwitcher from "../../components/ThemeSwitcher";
+import { tokens } from "../../theme";
 
 const Topbar = ({ toggleDrawer }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode = useContext(ColorModeContext);
+
   return (
     <Box
       display="flex"
@@ -41,13 +39,7 @@ const Topbar = ({ toggleDrawer }) => {
 
       {/* Icons */}
       <Box display="flex">
-        <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon />
-          ) : (
-            <LightModeOutlinedIcon />
-          )}
-        </IconButton>
+        <ThemeSwitcher />
         <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>
