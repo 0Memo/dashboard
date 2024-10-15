@@ -27,7 +27,6 @@ const Topbar = ({ toggleDrawer }) => {
         <IconButton onClick={toggleDrawer}>
           <MenuOutlinedIcon fontSize="large" />
         </IconButton>
-
         {/* Search Bar */}
         <Box
           display="flex"
