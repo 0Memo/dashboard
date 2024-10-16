@@ -47,13 +47,19 @@ const Calendar = () => {
             />
             <Box
                 display='flex'
-                justifyContent='space-between'
+                sx={{
+                        display: { xs: 'block', md: 'flex' },
+                        justifyContent: { xs: 'none', md: 'space-between'}
+                    }}
             >
                 <Box
-                    flex='1 1 20%'
+                    flex='1 1 15%'
                     backgroundColor={colors.primary[400]}
                     p='15px'
                     borderRadius='4px'
+                    sx={{
+                        marginBottom: { xs: '20px', md: '0'}
+                    }}
                 >
                     <Typography
                         variant='h5'
@@ -88,7 +94,9 @@ const Calendar = () => {
                 </Box>
                 <Box
                     flex='1 1 100%'
-                    ml='15px'
+                    sx={{ 
+                        ml: { xs: '0', md: '20px'}
+                    }}
                 >
                     <FullCalendar
                         timeZone={'local'}
@@ -101,9 +109,13 @@ const Calendar = () => {
                             listPlugin
                         ]}
                         headerToolbar={{
-                            left: 'prev,next today',
+                            left: 'prev,next',
                             center: 'title',
-                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                        }}
+                        titleFormat={{ 
+                            month: 'short',
+                            year: 'numeric'
                         }}
                         initialView="dayGridMonth"
                         editable={true}
