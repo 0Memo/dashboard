@@ -1,12 +1,12 @@
-import DarkModeIcon from "@mui/icons-material/DarkMode"; // Icône pour le mode sombre
-import LightModeIcon from "@mui/icons-material/LightMode"; // Icône pour le mode clair
-import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness"; // Icône pour le mode système
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import { IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
 import React, { useState } from "react";
-import { useColorMode } from "./ThemeContext"; // Assurez-vous que ce chemin est correct
+import { useColorMode } from "./ThemeContext"; // Vérifiez que le chemin est correct
 
 function ThemeSwitcher() {
-  const { setThemeMode, mode } = useColorMode(); // Récupère le mode actuel
+  const { setThemeMode, mode } = useColorMode(); // Récupérer le mode actuel
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -22,25 +22,24 @@ function ThemeSwitcher() {
     handleClose();
   };
 
+  // Options de thème avec les icônes correspondantes
+  const themeOptions = [
+    { label: "Light", value: "light", icon: <LightModeIcon /> },
+    { label: "Dark", value: "dark", icon: <DarkModeIcon /> },
+    { label: "System", value: "system", icon: <SettingsBrightnessIcon /> },
+  ];
+
   // Déterminer l'icône en fonction du thème actuel
   const getCurrentIcon = () => {
-    switch (mode) {
-      case "light":
-        return <LightModeIcon />;
-      case "dark":
-        return <DarkModeIcon />;
-      case "system":
-      default:
-        return <SettingsBrightnessIcon />;
-    }
+    const currentTheme = themeOptions.find((option) => option.value === mode);
+    return currentTheme ? currentTheme.icon : <SettingsBrightnessIcon />;
   };
 
   return (
     <div>
       <Tooltip title="Choose Theme">
         <IconButton onClick={handleClick}>
-          {getCurrentIcon()}{" "}
-          {/* Affiche l'icône correspondant au mode actuel */}
+          {getCurrentIcon()}
         </IconButton>
       </Tooltip>
       <Menu
@@ -56,24 +55,15 @@ function ThemeSwitcher() {
           horizontal: "right",
         }}
       >
-        <MenuItem
-          sx={{ display: "flex", alignItems: "center", gap: "5px" }}
-          onClick={() => handleThemeChange("light")}
-        >
-          <LightModeIcon /> Light
-        </MenuItem>
-        <MenuItem
-          sx={{ display: "flex", alignItems: "center", gap: "5px" }}
-          onClick={() => handleThemeChange("dark")}
-        >
-          <DarkModeIcon /> Dark
-        </MenuItem>
-        <MenuItem
-          sx={{ display: "flex", alignItems: "center", gap: "5px" }}
-          onClick={() => handleThemeChange("system")}
-        >
-          <SettingsBrightnessIcon /> System
-        </MenuItem>
+        {themeOptions.map((option) => (
+          <MenuItem
+            key={option.value}
+            sx={{ display: "flex", alignItems: "center", gap: "5px" }}
+            onClick={() => handleThemeChange(option.value)}
+          >
+            {option.icon} {option.label}
+          </MenuItem>
+        ))}
       </Menu>
     </div>
   );

@@ -1,3 +1,5 @@
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -5,12 +7,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { Box, IconButton, useTheme } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import ThemeSwitcher from "../../components/ThemeSwitcher";
-import { tokens } from "../../theme";
+import { useContext } from "react";
+import { ColorModeContext, tokens } from "../../theme";
 
 const Topbar = ({ toggleDrawer }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   return (
     <Box
@@ -20,10 +23,11 @@ const Topbar = ({ toggleDrawer }) => {
       p={2}
     >
       {/* Menu Icon */}
-      <Box display="flex" justifyContent="start" alignItems={"center"} gap={4}>
+      <Box display="flex" justifyContent="start" gap={4}>
         <IconButton onClick={toggleDrawer}>
           <MenuOutlinedIcon fontSize="large" />
         </IconButton>
+
         {/* Search Bar */}
         <Box
           display="flex"
@@ -38,8 +42,14 @@ const Topbar = ({ toggleDrawer }) => {
       </Box>
 
       {/* Icons */}
-      <Box display="flex">
-        <ThemeSwitcher />
+      <Box display="flex items-center">
+        <IconButton onClick={colorMode.toggleColorMode}>
+          {theme.palette.mode === "dark" ? (
+            <DarkModeOutlinedIcon />
+          ) : (
+            <LightModeOutlinedIcon />
+          )}
+        </IconButton>
         <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>

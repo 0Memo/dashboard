@@ -1,70 +1,56 @@
-// ThemeContext.js
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles"; // Importez ThemeProvider ici
+import React, { createContext, useContext, useMemo, useState } from "react";
 
-const ColorModeContext = createContext({
-  setThemeMode: () => {},
-  mode: "light",
-});
+const ColorModeContext = createContext();
 
-export function ToggleColorModeProvider({ children }) {
-  const [mode, setMode] = useState("system");
-
-  // Détecter le thème du système
-  const getSystemTheme = () =>
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-
-  const currentThemeMode = mode === "system" ? getSystemTheme() : mode;
+export const ToggleColorModeProvider = ({ children }) => {
+  const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
     () => ({
-      setThemeMode: (newMode) => {
-        setMode(newMode);
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
-      mode: currentThemeMode, // Ajout du mode actuel
     }),
-    [currentThemeMode]
+    []
   );
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: currentThemeMode,
+          mode,
+          ...(mode === "light"
+            ? {
+                // Palette du thème clair
+                primary: {
+                  main: "#1976d2",
+                },
+                // Ajoutez d'autres configurations si nécessaire
+              }
+            : {
+                // Palette du thème sombre
+                primary: {
+                  main: "#90caf9",
+                },
+                // Ajoutez d'autres configurations si nécessaire
+              }),
         },
       }),
-    [currentThemeMode]
+    [mode]
   );
-
-  useEffect(() => {
-    // Mettre à jour le thème en cas de changement du thème système
-    if (mode === "system") {
-      const listener = () => setMode("system");
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", listener);
-      return () =>
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .removeEventListener("change", listener);
-    }
-  }, [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        {" "}
+        {/* Assurez-vous que ThemeProvider enveloppe les enfants */}
+        {children}
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
-}
+};
 
-export function useColorMode() {
+export const useColorMode = () => {
   return useContext(ColorModeContext);
-}
+};
